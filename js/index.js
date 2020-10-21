@@ -1,24 +1,21 @@
+window.mostrarPersonaje = function(){
+let p = this.personaje;
+console.log(p);
+}
+
 window.mostrar = (datos)=>{
     const contenidoDiv = document.querySelector("#contenido");
-    let ul = document.createElement("ul");
+    let molde = document.querySelector('.card-molde');
     for(let i=0; i<datos.length;++i){
         let personaje = datos[i];
-        let li = document.createElement("li");
-        let spanNombre = document.createElement("span");
-        spanNombre.innerText = personaje.name;
-        let spanEstado = document.createElement("span");
-        spanEstado.innerText = personaje.status;
-        let imagen = document.createElement("img");
-        imagen.src = personaje.image;
-
-        li.appendChild(spanNombre);
-        li.appendChild(spanEstado);
-        li.appendChild(imagen);
-        ul.appendChild(li);
+        let div = molde.cloneNode(true);
+        div.querySelector('.nombre-personaje').innerText = personaje.name;
+        div.querySelector('.imagen-personaje').src = personaje.image;
+        div.querySelector('.btn-detalle').personaje = personaje;
+        div.querySelector('.btn-detalle').addEventListener('click',window.mostrarPersonaje);
+        contenidoDiv.appendChild(div);
+        
 }
-    
-    
-    contenidoDiv.appendChild(ul);
 
     
 
